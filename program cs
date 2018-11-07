@@ -1,0 +1,194 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace intToString
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            while (true)
+            {
+                int inputNUmber = int.Parse(Console.ReadLine().ToString());
+
+
+                string parsString = ToText(inputNUmber);
+                Console.WriteLine(parsString);
+            }
+            Console.ReadKey();
+
+
+        }
+        static string ToText(int number)
+        {
+            string result = "";
+            if (number == 0)
+                result = "nuli";
+            if (number < 0)
+                result = "minus " + ToText(-number);
+            else
+            {
+                if (number < 20)
+                    result = Ocobiti(number);
+                else
+                {
+                    String numberString = number.ToString();
+
+                    {
+                        string v = new string(numberString.Reverse().Skip(9).Take(3).ToArray());
+                        if (v != "")
+                        {
+                            int a = int.Parse(v);
+                            string bd = samiRicxvi(a);
+
+                            result += bd + " miliard";
+                        }
+                    }
+                    {
+                        string v = new string(numberString.Reverse().Skip(6).Take(3).ToArray());
+                        if (v != "")
+                        {
+                            int a = int.Parse(v);
+                            string bd = samiRicxvi(a);
+                            if (a != 0)
+                                result += bd + " milion ";
+                        }
+                    }
+                    {
+                        string v = new string(numberString.Reverse().Skip(3).Take(3).Reverse().ToArray());
+                        if (v != "")
+                        {
+                            int a = int.Parse(v);
+                            string bd = samiRicxvi(a);
+                            if (a != 0)
+                                result += bd + " atas ";
+                        }
+                    }
+                    {
+                        string v = new string(numberString.Reverse().Take(3).Reverse().ToArray());
+                        int a = int.Parse(v);
+                        if (a != 0)
+                            result += samiRicxvi(a);
+                    }
+                }
+
+            }
+            return result;
+        }
+
+        #region Ocobiti
+        static string Ocobiti(int argumenti)
+        {
+            switch (argumenti)
+            {
+                case 1:
+                return "erti";
+                case 2:
+                return "ori";
+                case 3:
+                return "sami";
+                case 4:
+                return "otxi";
+                case 5:
+                return "xuti";
+                case 6:
+                return "eqvsi";
+                case 7:
+                return "shvidi";
+                case 8:
+                return "rva";
+                case 9:
+                return "cxra";
+                case 10:
+                return "ati";
+                case 11:
+                return "tertmeti";
+                case 12:
+                return "tormeti";
+                case 13:
+                return "cameti";
+                case 14:
+                return "totxmeti";
+                case 15:
+                return "txutmeti";
+                case 16:
+                return "teqvsmeti";
+                case 17:
+                return "chvidmeti";
+                case 18:
+                return "tvrameti";
+                case 19:
+                return "cxrameti";
+                case 20:
+                return "oci";
+                case 30:
+                return "ocdaati";
+                case 40:
+                return "ormoci";
+                case 50:
+                return "ormocdaati";
+                case 60:
+                return "samoci";
+                case 70:
+                return "samocdaati";
+                case 80:
+                return "otxmoci";
+                case 90:
+                return "otxmocdati";
+                default:
+                return "";
+            }
+        }
+        #endregion
+
+        static string asamde(int ori)
+        {
+            if (ori / 10 == 2)
+            {
+                return "ocda" + Ocobiti(ori % 10);
+            }
+            if (ori / 10 == 3)
+            {
+                return "ocda" + Ocobiti(ori % 10 + 10);
+            }
+            if (ori / 10 == 4)
+            {
+                return "ormocda" + Ocobiti(ori % 10);
+            }
+            if (ori / 10 == 5)
+            {
+                return "ormocda" + Ocobiti(ori % 10 + 10);
+            }
+            if (ori / 10 == 6)
+            {
+                return "samocda" + Ocobiti(ori % 10);
+            }
+            if (ori / 10 == 7)
+            {
+                return "samocda" + Ocobiti(ori % 10 + 10);
+            }
+            if (ori / 10 == 8)
+            {
+                return "otxmocda" + Ocobiti(ori % 10);
+            }
+            if (ori / 10 == 9)
+            {
+                return "otxmocda" + Ocobiti(ori % 10 + 10);
+            }
+            return Ocobiti(ori);
+        }
+
+        static string samiRicxvi(int sami)
+        {
+            if (sami.ToString().Length == 3)
+                return Ocobiti(sami / 100) + "as" + asamde(sami % 100);
+            else
+                return asamde(sami);
+
+        }
+    }
+}
